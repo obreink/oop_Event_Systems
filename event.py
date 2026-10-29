@@ -51,13 +51,30 @@ class Venue:
 
 
 class Event:
-
     _allowed_events :list[str] = ["workshop","conference","open day","convention"]
 
-    def __int__(self,event_id,event_title,start_time,event_date,_event_type,cancelled,capacity,ticket_price):
+    def __int__(self,event_id,event_title,start_time,event_date,event_type,cancelled,capacity,ticket_price):
+
+        if event_type.lower() in Event._allowed_events:
+            self._event_type = event_type
+        else:
+            return False
+
+        if capacity < 0:
+            print("Please set apporiate number of attendants")
+        else:
+            self._capacity = capacity
+
 
         self._event_id = event_id
-        self
+        self._event_type = event_type
+        self.start_time =start_time
+        self.cancelled = cancelled
+        self.ticket_price =ticket_price
+        self.event_date= event_date
+        self.event_title = event_title
+
+
 
 
 
@@ -96,7 +113,6 @@ class Event:
         
 
 
-
     def change_venue(self):
         """
 
@@ -104,10 +120,7 @@ class Event:
         """
 
     def cancel_event(self):
-        """
-
-        :return:
-        """
 
 
-    def __str__(self) -> str:
+
+
