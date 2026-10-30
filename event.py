@@ -4,11 +4,11 @@ class Venue:
 
     def __init__(self,venue_id : int ,venue_name: str,capacity:int ):
         """
+        Creates a venue
+        :param venue_id: id for the venue
+        :param venue_name: name for the venue
+        :param capacity: maximum number of people a venue can host
 
-        :param venue_id:
-        :param venue_name:
-        :param capacity:
-        :return:
         """
         self.venue_id= venue_id
         self.venue_name = venue_name
@@ -46,12 +46,6 @@ class Venue:
         return f"{self.venue_id}  ({self.venue_name}),capacity {self._capacity}"
 
 
-
-
-
-
-
-
 class Event:
     _allowed_events :list[str] = ["workshop","conference","open day","convention"]
     ticket_prices:dict[str,float] ={
@@ -79,19 +73,11 @@ class Event:
         self.venue_name = venue_name
 
 
-
-
-
-
-
-
-
-
     def update_event_details(self,updated_date :datetime.date , updated_time:datetime.time)-> bool:
         """
         Updates  date and start time for an event
-        args  :updated_date:
-              :updated_time:
+        args  :updated_date: new date for the event
+              :updated_time: new time the event will start on.
         return : True
         """
 
@@ -157,4 +143,5 @@ if __name__ == "__main__":
     Venue1=Venue(1,"Faulkner hall",20)
     event1 =Event(3,"Work camp", 1000, 2026,"workshop",cancelled= False,venue_name=Venue1,capacity=20,ticket_price=20.99)
     event1.cancel_event()
+    print()
 
