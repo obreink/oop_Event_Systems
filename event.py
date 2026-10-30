@@ -21,14 +21,14 @@ class Venue:
 
     def get_venue_id(self)-> int:
         """
-
-        :return:
+        gets the id of the venue
+        :return: venue id
         """
         return self.venue_id
 
     def get_venue_name(self)-> str:
         """
-
+        Prints out the name of the venue
         :return:
         """
 
@@ -54,11 +54,11 @@ class Venue:
 
 class Event:
     _allowed_events :list[str] = ["workshop","conference","open day","convention"]
-    ticket_price:dict[str,float] ={
+    ticket_prices:dict[str,float] ={
 
     }
 
-    def __init__(self,event_id,event_title,start_time,event_date,event_type,cancelled,venue_name ,capacity,ticket_price):
+    def __init__(self,event_id :int ,event_title :str,start_time:datetime.time,event_date:datetime.date,event_type :str,cancelled :bool,venue_name: str ,capacity :int,ticket_price: float):
 
         if event_type.lower() in Event._allowed_events:
             self._event_type = event_type
@@ -71,9 +71,9 @@ class Event:
 
 
         self._event_id = event_id
-        self.start_time =start_time
+        self._start_time = start_time
         self.cancelled = cancelled
-        self.ticket_price =ticket_price
+        self.ticket_price=ticket_price
         self.event_date= event_date
         self.event_title = event_title
         self.venue_name = venue_name
@@ -97,7 +97,7 @@ class Event:
 
 
         self.event_date = updated_date
-        self.start_time = updated_time
+        self._start_time = updated_time
         return True
 
 
@@ -122,24 +122,39 @@ class Event:
         
 
 
-    def change_venue(self,new_venue):
+    def change_venue(self,new_venue :str):
+        """
+        Updates or changes the venue for an event
+        :param new_venue: new venue name
+
+        """
 
         self.venue_name = new_venue
 
 
 
 
-    def cancel_event(self):
+    def cancel_event(self)-> bool:
+        """
+        checks if event is event has been cancelled
+        :return: True if event is cancelled
+               : False if the event has not been cancelled
+        """
         if self.cancelled :
             return True
         else:
-            return False
+            self.cancelled = False
 
 
     def __str__(self) -> str:
-        return  (f"Event Title:{self.event_title}, Event {self._event_type} Venue {self.venue_name} ,Capacity {self._capacity},Event Date:{self.event_date}  Start Time: {self.start_time},Ticket Price:{self.ticket_price}  ")
+        """
+        Prints out string information about the event
+        :return: Event details
+        """
+        return (f"Event ID: {self._event_id},Event Title:{self.event_title}, Event {self._event_type} Venue {self.venue_name} ,Capacity {self._capacity},Event Date:{self.event_date}  Start Time: {self.start_time},Ticket Price:{self.ticket_price}  ")
 
-
-
-
+if __name__ == "__main__":
+    Venue1=Venue(1,"Faulkner hall",20)
+    event1 =Event(3,"Work camp", 1000, 2026,"workshop",cancelled= False,venue_name=Venue1,capacity=20,ticket_price=20.99)
+    event1.cancel_event()
 
