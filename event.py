@@ -1,6 +1,6 @@
 class Venue:
 
-    def __int__(self,venue_id : int ,venue_name: str,capacity:int ):
+    def __init__(self,venue_id : int ,venue_name: str,capacity:int ):
         """
 
         :param venue_id:
@@ -53,12 +53,11 @@ class Venue:
 class Event:
     _allowed_events :list[str] = ["workshop","conference","open day","convention"]
 
-    def __int__(self,event_id,event_title,start_time,event_date,event_type,cancelled,capacity,ticket_price):
+    def __init__(self,event_id,event_title,start_time,event_date,event_type,cancelled,venue_name ,capacity,ticket_price):
 
         if event_type.lower() in Event._allowed_events:
             self._event_type = event_type
-        else:
-            return False
+
 
         if capacity < 0:
             print("Please set apporiate number of attendants")
@@ -67,12 +66,12 @@ class Event:
 
 
         self._event_id = event_id
-        self._event_type = event_type
         self.start_time =start_time
         self.cancelled = cancelled
         self.ticket_price =ticket_price
         self.event_date= event_date
         self.event_title = event_title
+        self.venue_name = venue_name
 
 
 
@@ -85,13 +84,18 @@ class Event:
 
     def update_event_details(self,updated_date, updated_time):
         """
-        Updates time and date for an event
-        :args:
-         updated_date:
-         updated_time:
-        :return:
-            True
+        Updates  date and start time for an event
+        args  :updated_date:
+              :updated_time:
+        return : True
         """
+
+        
+        self.event_date = updated_date
+        self.start_time = updated_time
+        return True
+
+
 
     def change_event_type(self,new_type):
         
@@ -113,13 +117,23 @@ class Event:
         
 
 
-    def change_venue(self):
-        """
+    def change_venue(self,new_venue):
 
-        :return:
-        """
+        self.venue_name = new_venue
+
+
+
 
     def cancel_event(self):
+        if self.cancelled :
+            return True
+        else:
+            return False
+
+
+    def __str__(self) -> str:
+        return  (f"Event Title:{self.event_title}, Event {self._event_type} Venue {self.venue_name} ,Capacity {self._capacity},Event Date:{self.event_date}  Start Time: {self.start_time},Ticket Price:{self.ticket_price}  ")
+
 
 
 
