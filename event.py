@@ -1,3 +1,5 @@
+import datetime
+
 class Venue:
 
     def __init__(self,venue_id : int ,venue_name: str,capacity:int ):
@@ -52,6 +54,9 @@ class Venue:
 
 class Event:
     _allowed_events :list[str] = ["workshop","conference","open day","convention"]
+    ticket_price:dict[str,float] ={
+
+    }
 
     def __init__(self,event_id,event_title,start_time,event_date,event_type,cancelled,venue_name ,capacity,ticket_price):
 
@@ -82,7 +87,7 @@ class Event:
 
 
 
-    def update_event_details(self,updated_date, updated_time):
+    def update_event_details(self,updated_date :datetime.date , updated_time:datetime.time)-> bool:
         """
         Updates  date and start time for an event
         args  :updated_date:
@@ -90,14 +95,14 @@ class Event:
         return : True
         """
 
-        
+
         self.event_date = updated_date
         self.start_time = updated_time
         return True
 
 
 
-    def change_event_type(self,new_type):
+    def change_event_type(self,new_type: str)-> bool:
         
         """
         Changes the existing event type to a new event type but only in the allowed event type list
