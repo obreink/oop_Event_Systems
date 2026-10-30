@@ -45,5 +45,14 @@ class Booking:
         else:
             status = "Active"
 
-   
+        booking_details = (
+                "Booking ID: " + str(self.booking_id) + "\n"
+                + "Attendee: " + str(self._attendee) + "\n"
+                + "Event: " + str(self.event) + "\n"
+                + "Booking date: " + str(self.booking_date) + "\n"
+                + "Status: " + status
+        )
+
+        return booking_details
+
 
