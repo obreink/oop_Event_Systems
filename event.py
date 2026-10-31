@@ -10,7 +10,7 @@ class Venue:
         :param capacity: maximum number of people a venue can host
 
         """
-        self.venue_id= venue_id
+        self._venue_id= venue_id
         self.venue_name = venue_name
         self._capacity = capacity
 
@@ -117,7 +117,18 @@ class Event:
 
         self.venue_name = new_venue
 
+    def print_active_events(self,events:str )-> bool:
+        """
+        Prints out all active events by selecting all events that are not cancelled
+        :param events: events a list of all events
+        :return: active events
+        """
+        active_event= []
+        for event in events:
+            if not self.cancelled:
+                active_event.append(event)
 
+        return active_event
 
 
     def cancel_event(self)-> bool:
@@ -143,5 +154,5 @@ if __name__ == "__main__":
     Venue1=Venue(1,"Faulkner hall",20)
     event1 =Event(3,"Work camp", 1000, 2026,"workshop",cancelled= False,venue_name=Venue1,capacity=20,ticket_price=20.99)
     event1.cancel_event()
-    print()
+
 
