@@ -13,4 +13,12 @@ class Attendee:
             print("Invalid email address.")
             self.email = ""
 
-    
+    def update_email(self, new_email):
+        """Update the email if it looks valid."""
+
+        if "@" in new_email and "." in new_email:
+            self.email = new_email
+            return True
+        else:
+            print("Invalid email address. Email was not changed.")
+            return False
