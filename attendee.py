@@ -22,3 +22,13 @@ class Attendee:
         else:
             print("Invalid email address. Email was not changed.")
             return False
+    def __str__(self):
+        """Return the attendee information as text."""
+
+        attendee_details = (
+            "Attendee ID: " + str(self._attendee_id) + "\n"
+            + "Name: " + self.name + "\n"
+            + "Email: " + self.email
+        )
+
+        return attendee_details
