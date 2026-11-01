@@ -70,7 +70,7 @@ class Event:
         self.ticket_price=ticket_price
         self.event_date= event_date
         self.event_title = event_title
-        self.venue_name = venue_name
+        self._venue_name = venue_name
 
 
     def update_event_details(self,updated_date :datetime.date , updated_time:datetime.time)-> bool:
@@ -115,7 +115,7 @@ class Event:
 
         """
 
-        self.venue_name = new_venue
+        self._venue_name = new_venue
 
     def print_active_events(self,events:str )-> bool:
         """
